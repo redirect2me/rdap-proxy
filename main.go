@@ -31,6 +31,7 @@ func main() {
 	e.GET("/robots.txt", theStaticHandler)
 	e.GET("/favicon.ico", theStaticHandler)
 	e.GET("/favicon.svg", theStaticHandler)
+	e.GET("/status.json", echo.WrapHandler(&Status{}))
 
 	// Start server
 	e.Logger.Fatal(e.Start(":" + strconv.Itoa(port)))

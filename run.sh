@@ -5,9 +5,11 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-go run main.go \
+go run \
+  config.go \
   convertToRDAP.go \
-  staticHandler.go \
-  whoisLookup.go \
+  main.go \
   rdapHandler.go \
-  config.go
+  staticHandler.go \
+  status.go \
+  whoisLookup.go 
