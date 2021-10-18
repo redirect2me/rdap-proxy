@@ -1,7 +1,6 @@
 package main
 
 import (
-	"net/http"
 	"strconv"
 
 	"github.com/labstack/echo/v4"
@@ -21,9 +20,8 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// Route => handler
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!\n")
-	})
+	e.GET("/", viewHandler("index.html"))
+	e.GET("/contact.html", viewHandler("contact.html"))
 
 	e.GET("/rdap/domain/:domain", rdapHandler)
 

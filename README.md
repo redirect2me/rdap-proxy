@@ -16,6 +16,8 @@ To run locally for development:
 golang
 google (favicon)
 
+* [echo](https://echo.labstack.com/)
+
 * [rfc1036/whois](https://github.com/rfc1036/whois/blob/next/tld_serv_list) - list of whois servers
 * [resolve.rs](https://resolve.rs/domains/rdap.html) - list of rdap servers
 <!-- to update:
@@ -23,6 +25,7 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 -->
 * [viper](https://github.com/spf13/viper)
 * [echo](https://echo.labstack.com/guide/)
+* [raymond](https://github.com/aymerick/raymond)
 
 ## To Do
 
