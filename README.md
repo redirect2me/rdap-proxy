@@ -13,6 +13,9 @@ To run locally for development:
 
 ## Credits
 
+golang
+google (favicon)
+
 * [rfc1036/whois](https://github.com/rfc1036/whois/blob/next/tld_serv_list) - list of whois servers
 * [resolve.rs](https://resolve.rs/domains/rdap.html) - list of rdap servers
 <!-- to update:
@@ -25,15 +28,15 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 
 - [x] load config
 - [x] parse requested domain to determine correct WHOIS server
-- [ ] query WHOIS
-- [ ] parse response
+- [x] query WHOIS
+- [x] parse response
 - [ ] format response as RDAP
 - [ ] pass-through error responses
 
 - [ ] load list of existing RDAP servers
 - [x] redirect tlds that already have an RDAP server
 
-- [ ] status.json
+- [x] status.json
 - [ ] metrics
 
 - [ ] embed assets in binary
@@ -49,8 +52,10 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 - [ ] cron GHA to update whois list
 - [ ] cron GHA to update rdap list
 
+- [ ] unify logging
+- [ ] disable page logging when running in CloudRun
+
 - [ ] 404/500 pages
-- [ ] logging
 
 - [ ] rate-limiter
 - [ ] timeouts

@@ -11,8 +11,8 @@ import (
 //go:embed static
 var embeddedFiles embed.FS
 
-func staticHandler(useFileSystem bool) http.Handler {
-	if useFileSystem {
+func staticHandler() http.Handler {
+	if devMode {
 		log.Print("staticHandler: using file system")
 		return http.FileServer(http.FS(os.DirFS("static")))
 	}

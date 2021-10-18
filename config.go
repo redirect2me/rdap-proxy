@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"log"
 	"net/http"
@@ -9,6 +10,7 @@ import (
 	"time"
 
 	jww "github.com/spf13/jwalterweatherman"
+	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 )
 
@@ -36,6 +38,7 @@ var (
 	redirectStatus int
 	timeout        time.Duration
 	port           int
+	devMode        bool
 )
 
 func loadConfig() {
@@ -43,9 +46,15 @@ func loadConfig() {
 	jww.SetLogThreshold(jww.LevelTrace)
 	jww.SetStdoutThreshold(jww.LevelInfo)
 
+	pflag.BoolVar(&devMode, "dev", false, "Run in development mode")
+	pflag.IntVar(&port, "port", 4000, "Port to run on")
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+
 	viper.SetDefault("redirectStatus", http.StatusTemporaryRedirect)
 	viper.SetDefault("timeout", "10s")
 	viper.SetDefault("port", "4000")
+	viper.SetDefault("dev", "false")
 
 	viper.SetConfigFile("rdap-proxy.yaml")
 	viper.AddConfigPath("/etc")
@@ -70,7 +79,10 @@ func loadConfig() {
 		timeout = time.Duration(10) * time.Second
 	}
 	port = viper.GetInt("port")
+	devMode = viper.GetBool("dev")
 
-	//res, _ := json.Marshal(viper.AllSettings())
-	//log.Printf("whois: %s", res)
+	log.Printf("devmode: %s", viper.GetString("dev"))
+
+	res, _ := json.Marshal(viper.AllSettings())
+	log.Printf("whois: %s", res)
 }

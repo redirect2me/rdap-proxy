@@ -27,7 +27,7 @@ func main() {
 
 	e.GET("/rdap/domain/:domain", rdapHandler)
 
-	theStaticHandler := echo.WrapHandler(staticHandler(true))
+	theStaticHandler := echo.WrapHandler(staticHandler())
 	e.GET("/robots.txt", theStaticHandler)
 	e.GET("/favicon.ico", theStaticHandler)
 	e.GET("/favicon.svg", theStaticHandler)

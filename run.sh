@@ -12,4 +12,5 @@ go run \
   rdapHandler.go \
   staticHandler.go \
   status.go \
-  whoisLookup.go 
+  whoisLookup.go \
+  --dev
