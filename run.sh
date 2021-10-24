@@ -14,4 +14,5 @@ go run \
   status.go \
   viewHandler.go \
   whoisLookup.go \
-  --dev
+  --dev \
+  --bind=localhost

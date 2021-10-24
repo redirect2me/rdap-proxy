@@ -14,6 +14,7 @@ func main() {
 
 	// Echo instance
 	e := echo.New()
+	e.HideBanner = true
 
 	// Middleware
 	e.Use(middleware.Logger())
@@ -26,11 +27,15 @@ func main() {
 	e.GET("/rdap/domain/:domain", rdapHandler)
 
 	theStaticHandler := echo.WrapHandler(staticHandler())
+	e.GET("/status.json", echo.WrapHandler(&Status{}))
 	e.GET("/robots.txt", theStaticHandler)
 	e.GET("/favicon.ico", theStaticHandler)
 	e.GET("/favicon.svg", theStaticHandler)
-	e.GET("/status.json", echo.WrapHandler(&Status{}))
+	e.GET("/css/:filename", theStaticHandler)
+	e.GET("/js/:filename", theStaticHandler)
+
+	e.GET("/config.json", configHandler)
 
 	// Start server
-	e.Logger.Fatal(e.Start(":" + strconv.Itoa(port)))
+	e.Logger.Fatal(e.Start(bindHost + ":" + strconv.Itoa(port)))
 }

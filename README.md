@@ -1,5 +1,13 @@
 # RDAP &rarr; WHOIS Proxy  [<img alt="Logo" src="static/favicon.svg" height="96" align="right"/>](https://rdap-proxy.redirect2.me/)
 
+
+## Resource Links
+
+- [IANA root domain database](https://www.iana.org/domains/root/db) - info for each domain, including (if available), the whois server(s).  This isn't really machine-readable.  Try [rfc1036/whois](https://github.com/rfc1036/whois/blob/next/tld_serv_list) or [whois/ianawhois](https://github.com/whois/ianawhois/blob/master/.code/update.rb).
+- [IANA RDAP for domains bootstrap file (JSON)](https://data.iana.org/rdap/dns.json) - the official list of RDAP servers for domain lookups
+- [IANA list of RDAP servers for registrars](https://www.iana.org/assignments/registrar-ids/registrar-ids.xhtml) - useful for finding a fallback RDAP server, especially if you buy all your domains from a single registrar.
+- [Resolve.rs report of unofficial/missing RDAP servers](https://resolve.rs/domains/rdap-missing.html)
+
 ## How to Run
 
 To run locally for development:
@@ -17,7 +25,6 @@ golang
 google (favicon)
 
 * [echo](https://echo.labstack.com/)
-
 * [rfc1036/whois](https://github.com/rfc1036/whois/blob/next/tld_serv_list) - list of whois servers
 * [resolve.rs](https://resolve.rs/domains/rdap.html) - list of rdap servers
 <!-- to update:
@@ -26,18 +33,31 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 * [viper](https://github.com/spf13/viper)
 * [echo](https://echo.labstack.com/guide/)
 * [raymond](https://github.com/aymerick/raymond)
+* [zerolog](https://github.com/rs/zerolog)
 
 ## To Do
 
 - [x] load config
+- [x] redirect tlds that already have an RDAP server
 - [x] parse requested domain to determine correct WHOIS server
 - [x] query WHOIS
 - [x] parse response
 - [ ] format response as RDAP
 - [ ] pass-through error responses
 
-- [ ] load list of existing RDAP servers
-- [x] redirect tlds that already have an RDAP server
+- [ ] views: html -> hbs
+- [ ] /index.html: decent home page
+- [ ] /test.html
+- [ ] list of allowed TLDs to proxy (redirect always works)
+
+- [ ] /config.html
+- [x] /config.json
+- [ ] remove filesystem access to files in dev mode: air works
+
+- [ ] load list of existing RDAP servers into conf
+- [ ] load list of existing WHOIS servers into conf
+- [ ] fallback whois/rdap server for TLDs without
+- [ ] config via env vars
 
 - [x] status.json
 - [ ] metrics

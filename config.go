@@ -2,13 +2,13 @@ package main
 
 import (
 	"bytes"
-	"encoding/json"
 	"errors"
 	"log"
 	"net/http"
 	"os"
 	"time"
 
+	"github.com/labstack/echo/v4"
 	jww "github.com/spf13/jwalterweatherman"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -39,6 +39,9 @@ var (
 	timeout        time.Duration
 	port           int
 	devMode        bool
+	bindHost       string
+	allowed        []string
+	allowedSet     map[string]bool
 )
 
 func loadConfig() {
@@ -48,6 +51,8 @@ func loadConfig() {
 
 	pflag.BoolVar(&devMode, "dev", false, "Run in development mode")
 	pflag.IntVar(&port, "port", 4000, "Port to run on")
+	pflag.StringVar(&bindHost, "bind", "", "Network to bind to, usually either localhost (for development) or 0.0.0.0 (default, for production)")
+	pflag.StringSliceVar(&allowed, "allowed", []string{}, "List of allowed TLDs")
 	pflag.Parse()
 	viper.BindPFlags(pflag.CommandLine)
 
@@ -55,6 +60,7 @@ func loadConfig() {
 	viper.SetDefault("timeout", "10s")
 	viper.SetDefault("port", "4000")
 	viper.SetDefault("dev", "false")
+	viper.SetDefault("bind", "0.0.0.0")
 
 	viper.SetConfigFile("rdap-proxy.yaml")
 	viper.AddConfigPath("/etc")
@@ -78,11 +84,21 @@ func loadConfig() {
 	if timeoutErr != nil {
 		timeout = time.Duration(10) * time.Second
 	}
-	port = viper.GetInt("port")
 	devMode = viper.GetBool("dev")
+
+	allowedSet = make(map[string]bool)
+	for allowedTld := range allowed {
+		allowedSet[allowed[allowedTld]] = true
+	}
 
 	log.Printf("devmode: %s", viper.GetString("dev"))
 
-	res, _ := json.Marshal(viper.AllSettings())
-	log.Printf("whois: %s", res)
+	//LATER
+	//res, _ := json.Marshal(viper.AllSettings())
+	//log.Printf("whois: %s", res)
+}
+
+// just for debugging
+func configHandler(c echo.Context) error {
+	return c.JSONPretty(200, viper.AllSettings(), "  ")
 }

@@ -3,15 +3,33 @@
 	<meta charset="utf-8">
 		<title>RDAP to WHOIS Proxy</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css" />
+		<link rel="stylesheet" href="/css/pico.classless.min.css" />
 	</head>
 	<body>
-		<h1>
+		<main class="container">
+			<h1>
 			<img alt="rdap-whois-proxy logo" src="favicon.svg" style="height:2.2em;vertical-align:middle;" />
 			RDAP to WHOIS Proxy
 		</h1>
 		<p>
-			Coming soon!
+			<a href="https://en.wikipedia.org/wiki/Registration_Data_Access_Protocol">RDAP</a> is the replacement for the <a href="https://en.wikipedia.org/wiki/WHOIS">WHOIS</a> domain information lookup protocol.
+			Unfortunately,
+			not everyone supports RDAP (<a href="https://resolve.rs/domains/rdap-missing.html">report</a>).
+			This is a simple proxy that uses the existing WHOIS server but returns the information as RDAP.
 		</p>
+
+			<div style="display: flex; justify-content: center;">
+				<form method="POST" style="min-width:24em;">
+
+					<label for="domain">Domain</label>
+					<input type="domain" id="domain" name="domain" placeholder="example.com" required />
+
+					<button type="submit">Lookup</button>
+
+				</form>
+			</div>
+			<p>Free for light, non-commerical use.</p>
+			<p><a href="https://github.com/redirect2me/rdap-proxy">How this works</a>, including source code</p>
+		</main>
 	</body>
 </html>

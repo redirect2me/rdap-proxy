@@ -58,6 +58,7 @@ func (status *Status) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var b []byte
 	b, err = json.Marshal(status)
 	if err != nil {
+		//LATER: log
 		b = []byte("{\"success\":false,\"err\":\"json.Marshal failed\"}")
 	}
 
