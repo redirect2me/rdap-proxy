@@ -1,11 +1,12 @@
 package main
 
 import (
-	"bytes"
+	_ "embed"
 	"errors"
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/labstack/echo/v4"
@@ -15,22 +16,8 @@ import (
 )
 
 // LATER: move to be embedded
-var defaultConfig = []byte(`
-whois:
-    kr: whois.kr
-    io: whois.nic.io
-    me: whois.nic.me
-    rs: whois.rnids.rs
-    sh: whois.nic.sh
-redirect:
-    ch: https://rdap.nic.ch/
-    de: https://rdap.denic.de/
-    pr: https://rdap.afilias-srs.net/rdap/pr/
-    us: https://rdap.nic.us/
-    ve: https://rdap.nic.ve/rdap/
-    vu: https://rdap.dnrs.neustar/
-    ws: https://rdap.website.ws/
-`)
+//go:embed rdap-proxy.yaml
+var defaultConfig string
 
 var (
 	whoisMap       map[string]string
@@ -69,7 +56,7 @@ func loadConfig() {
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
 			log.Printf("config: using default (%s)", err)
-			viper.ReadConfig(bytes.NewBuffer(defaultConfig))
+			viper.ReadConfig(strings.NewReader(defaultConfig))
 		} else {
 			log.Fatalf("Unable to load config: %s", err)
 		}

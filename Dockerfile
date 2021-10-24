@@ -17,7 +17,6 @@ RUN \
     -o rdap-proxy *.go
 
 FROM scratch
-COPY ./rdap-proxy.yaml /app/
 COPY --from=builder /build/rdap-proxy /app/
 WORKDIR /app
 ENV PORT 4000
