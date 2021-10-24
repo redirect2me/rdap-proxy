@@ -36,18 +36,16 @@ func loadConfig() {
 	jww.SetLogThreshold(jww.LevelTrace)
 	jww.SetStdoutThreshold(jww.LevelInfo)
 
-	pflag.BoolVar(&devMode, "dev", false, "Run in development mode")
-	pflag.IntVar(&port, "port", 4000, "Port to run on")
-	pflag.StringVar(&bindHost, "bind", "", "Network to bind to, usually either localhost (for development) or 0.0.0.0 (default, for production)")
-	pflag.StringSliceVar(&allowed, "allowed", []string{}, "List of allowed TLDs")
-	pflag.Parse()
-	viper.BindPFlags(pflag.CommandLine)
-
 	viper.SetDefault("redirectStatus", http.StatusTemporaryRedirect)
 	viper.SetDefault("timeout", "10s")
 	viper.SetDefault("port", "4000")
 	viper.SetDefault("dev", "false")
 	viper.SetDefault("bind", "0.0.0.0")
+
+	viper.BindEnv("port", "PORT")
+	viper.BindEnv("allowed", "ALLOWED")
+	viper.BindEnv("bind", "BIND")
+	viper.BindEnv("dev", "DEV")
 
 	viper.SetConfigFile("rdap-proxy.yaml")
 	viper.AddConfigPath("/etc")
@@ -63,6 +61,14 @@ func loadConfig() {
 	} else {
 		log.Printf("config: loaded from %s", viper.ConfigFileUsed())
 	}
+
+	pflag.BoolVar(&devMode, "dev", false, "Run in development mode")
+	pflag.IntVar(&port, "port", viper.GetInt("port"), "Port to run on")
+	pflag.StringVar(&bindHost, "bind", viper.GetString("bind"), "Network to bind to, usually either localhost (for development) or 0.0.0.0 (default, for production)")
+	pflag.StringSliceVar(&allowed, "allowed", viper.GetStringSlice("allowed"), "List of allowed TLDs")
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+
 	whoisMap = viper.GetStringMapString("whois")
 	redirectMap = viper.GetStringMapString("redirect")
 	redirectStatus = viper.GetInt("redirectStatus")
