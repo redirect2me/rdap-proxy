@@ -1,0 +1,14 @@
+whois:
+    kr: whois.kr
+    io: whois.nic.io
+    me: whois.nic.me
+    rs: whois.rnids.rs
+    sh: whois.nic.sh
+redirect:
+    ch: https://rdap.nic.ch/
+    de: https://rdap.denic.de/
+    pr: https://rdap.afilias-srs.net/rdap/pr/
+    us: https://rdap.nic.us/
+    ve: https://rdap.nic.ve/rdap/
+    vu: https://rdap.dnrs.neustar/
+    ws: https://rdap.website.ws/
