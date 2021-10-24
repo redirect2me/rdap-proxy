@@ -1,5 +1,9 @@
 # RDAP &rarr; WHOIS Proxy  [<img alt="Logo" src="static/favicon.svg" height="96" align="right"/>](https://rdap-proxy.redirect2.me/)
 
+[![build](https://github.com/redirect2me/rdap-proxy/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/redirect2me/rdap-proxy/actions/workflows/gcr-deploy.yaml)
+[![# of WHOIS servers](https://img.shields.io/badge/dynamic/json.svg?label=WHOIS+Servers&url=https%3A%2F%2Frdap.redirect2.me%2Fstatus.json&query=%24.whoisCount)](https://rdap.redirect2.me/config.json)
+[![# of RDAP servers](https://img.shields.io/badge/dynamic/json.svg?label=RDAP+Servers&url=https%3A%2F%2Frdap.redirect2.me%2Fstatus.json&query=%24.rdapCount)](https://rdap.redirect2.me/config.json)
+
 
 ## Resource Links
 
@@ -106,3 +110,5 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 
 - [registrobr/rdap](https://github.com/registrobr/rdap): JSON schema is in `protocol` subdirectory
 - [openrdap](https://github.com/openrdap)
+
+- [official whois](https://serverfault.com/questions/343941/how-can-i-find-the-whois-server-for-any-tld) - Server Fault answer with various ways to figure out the correct WHOIS server

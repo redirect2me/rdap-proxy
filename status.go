@@ -12,17 +12,19 @@ var COMMIT string
 var LASTMOD string
 
 type Status struct {
-	Success   bool   `json:"success"`
-	Message   string `json:"message"`
-	Timestamp string `json:"timestamp"`
-	Commit    string `json:"commit"`
-	LastMod   string `json:"lastmod"`
-	Tech      string `json:"tech"`
-	Version   string `json:"version"`
-	Getwd     string `json:"os.Getwd()"`
-	Hostname  string `json:"os.Hostname()"`
-	Seconds   int64  `json:"os.Time.Now().Unix()"`
-	TempDir   string `json:"os.TempDir()"`
+	Success    bool   `json:"success"`
+	Message    string `json:"message"`
+	Timestamp  string `json:"timestamp"`
+	Commit     string `json:"commit"`
+	LastMod    string `json:"lastmod"`
+	Tech       string `json:"tech"`
+	Version    string `json:"version"`
+	Getwd      string `json:"os.Getwd()"`
+	Hostname   string `json:"os.Hostname()"`
+	Seconds    int64  `json:"os.Time.Now().Unix()"`
+	TempDir    string `json:"os.TempDir()"`
+	RdapCount  int    `json:"rdapCount"`
+	WhoisCount int    `json:"whoisCount"`
 }
 
 func (status *Status) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -48,6 +50,10 @@ func (status *Status) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	status.Seconds = time.Now().Unix()
 	status.TempDir = os.TempDir()
 	status.Version = runtime.Version()
+
+	status.RdapCount = len(redirectMap)
+	status.WhoisCount = len(whoisMap)
+
 	callback := r.FormValue("callback")
 
 	w.Header().Set("Content-Type", "text/plain; charset=utf8")
