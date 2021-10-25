@@ -1,6 +1,7 @@
 # RDAP &rarr; WHOIS Proxy  [<img alt="Logo" src="static/favicon.svg" height="96" align="right"/>](https://rdap-proxy.redirect2.me/)
 
 [![build](https://github.com/redirect2me/rdap-proxy/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/redirect2me/rdap-proxy/actions/workflows/gcr-deploy.yaml)
+[![30 day uptime](https://img.shields.io/nodeping/uptime/akjuezyz-cdli-4wxo-8ay6-6frbmos55ik3.svg?label=30-day%20uptime&style=flat)](https://nodeping.com/reports/uptime/akjuezyz-cdli-4wxo-8ay6-6frbmos55ik3)
 [![# of WHOIS servers](https://img.shields.io/badge/dynamic/json.svg?label=WHOIS+Servers&url=https%3A%2F%2Frdap.redirect2.me%2Fstatus.json&query=%24.whoisCount)](https://rdap.redirect2.me/config.json)
 [![# of RDAP servers](https://img.shields.io/badge/dynamic/json.svg?label=RDAP+Servers&url=https%3A%2F%2Frdap.redirect2.me%2Fstatus.json&query=%24.rdapCount)](https://rdap.redirect2.me/config.json)
 
