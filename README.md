@@ -1,4 +1,4 @@
-# RDAP &rarr; WHOIS Proxy  [<img alt="Logo" src="static/favicon.svg" height="96" align="right"/>](https://rdap-proxy.redirect2.me/)
+# RDAP &rarr; WHOIS Proxy  [<img alt="Logo" src="static/favicon.svg" height="96" align="right"/>](https://rdap.redirect2.me/)
 
 [![build](https://github.com/redirect2me/rdap-proxy/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/redirect2me/rdap-proxy/actions/workflows/gcr-deploy.yaml)
 [![30 day uptime](https://img.shields.io/nodeping/uptime/akjuezyz-cdli-4wxo-8ay6-6frbmos55ik3.svg?label=30-day%20uptime&style=flat)](https://nodeping.com/reports/uptime/akjuezyz-cdli-4wxo-8ay6-6frbmos55ik3)
@@ -23,6 +23,8 @@ To run locally for development:
 ## Contributing
 
 ## License
+
+[GNU Affero General Public License v3.0](LICENSE.txt)
 
 ## Credits
 
@@ -50,22 +52,26 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 - [ ] format response as RDAP
 - [ ] pass-through error responses
 
+- [x] LICENSE
+- [ ] README
+- [ ] configurable limit message ("Free for light non-commerical use")
 - [ ] views: html -> hbs
-- [ ] /index.html: decent home page
-- [ ] /test.html
+- [ ] /index.html: footer
+- [ ] /index.html: note about allowed domains
+- [ ] /index.html: link to README for detailed info (after 1st para)
+- [ ] POST for /index.html
 - [ ] list of allowed TLDs to proxy (redirect always works)
 
 - [ ] /config.html
 - [x] /config.json
 - [ ] remove filesystem access to files in dev mode: air works
 
-- [ ] load list of existing RDAP servers into conf
-- [ ] load list of existing WHOIS servers into conf
 - [ ] fallback whois/rdap server for TLDs without
-- [ ] config via env vars
+- [x] config via env vars
 
 - [x] status.json
 - [ ] metrics
+- [ ] status.html
 
 - [ ] embed assets in binary
 - [x] favicon: U+1F4C7
