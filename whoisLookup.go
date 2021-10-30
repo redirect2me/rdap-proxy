@@ -37,10 +37,5 @@ func whoisLookup(server, domain, format string) (int, string) {
 		return 200, string(jsonStr)
 	}
 
-	converted, convertErr := convertToRDAP(parsed)
-	if convertErr != nil {
-		return 500, convertErr.Error()
-	}
-
-	return 200, converted
+	return convertToRDAP(domain, parsed)
 }

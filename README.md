@@ -44,47 +44,22 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 
 ## To Do
 
-- [x] load config
-- [x] redirect tlds that already have an RDAP server
-- [x] parse requested domain to determine correct WHOIS server
-- [x] query WHOIS
-- [x] parse response
-- [ ] format response as RDAP
+- [ ] test for RDAP conformance
+- [ ] better date parsing
 - [ ] pass-through error responses
 
-- [x] LICENSE
-- [x] README
 - [ ] configurable limit message ("Free for light non-commerical use")
-- [x] views: html -> hbs
-- [ ] /index.html: footer
 - [ ] /index.html: note about allowed domains
-- [ ] /index.html: link to README for detailed info (after 1st para)
-- [x] POST for /index.html
 - [ ] list of allowed TLDs to proxy (redirect always works)
 
-- [ ] /config.html
-- [x] /config.json
 - [ ] remove filesystem access to files in dev mode: air works
 
 - [ ] fallback whois/rdap server for TLDs without
-- [x] config via env vars
 
-- [x] status.json
 - [ ] metrics
-- [ ] status.html
+- [ ] metrics badges?
 
-- [ ] embed assets in binary
-- [x] favicon: U+1F4C7
-- [ ] banner
-- [ ] pico
-- [ ] home page with info
-
-- [ ] Dockerfile
-- [ ] deploy to CloudRun
-- [ ] GHA to deploy
-- [ ] release: GHCR docker image
-- [ ] cron GHA to update whois list
-- [ ] cron GHA to update rdap list
+- [ ] banner and social media metadata
 
 - [ ] unify logging
 - [ ] disable page logging when running in CloudRun
@@ -94,12 +69,8 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 - [ ] rate-limiter
 - [ ] timeouts
 - [ ] time delay (per IP?)
-- [ ] flag to override specific whois/redirect
-- [ ] flag for port
 - [ ] basic auth + config/flag for user/password
-- [ ] better logging
 - [ ] page to display recent TLDs queried w/success ratio
-- [ ] page showing configuration
 
 - [ ] release: binary for Linux
 - [ ] release: binary for MacOS
@@ -115,7 +86,7 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 - [likexian/whois](https://github.com/likexian/whois/): able to specify server and timeout
 - [domainr/whois](https://github.com/domainr/whois): includes parsers for HTTP-based whois servers
 
-- [registrobr/rdap](https://github.com/registrobr/rdap): JSON schema is in `protocol` subdirectory
-- [openrdap](https://github.com/openrdap)
+- [registrobr/rdap](https://github.com/registrobr/rdap): [protocol/domain.go](https://github.com/registrobr/rdap/blob/master/protocol/domain.go)
+- [openrdap/rdap](https://github.com/openrdap/rdap): [domain.go](https://github.com/openrdap/rdap/blob/master/domain.go)
 
 - [official whois](https://serverfault.com/questions/343941/how-can-i-find-the-whois-server-for-any-tld) - Server Fault answer with various ways to figure out the correct WHOIS server
