@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"strconv"
 
 	"github.com/labstack/echo/v4"
@@ -22,7 +23,13 @@ func main() {
 
 	// Route => handler
 	e.GET("/", viewHandler("index.html"))
-	e.GET("/contact.html", viewHandler("contact.html"))
+	e.POST("/", func(c echo.Context) error {
+		domain := c.FormValue("domain")
+		if domain == "" { //LATER: better error checking
+			return c.Redirect(http.StatusFound, "/")
+		}
+		return c.Redirect(http.StatusFound, "/rdap/domain/"+domain)
+	})
 
 	e.GET("/rdap/domain/:domain", rdapHandler)
 
