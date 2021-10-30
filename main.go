@@ -22,7 +22,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// Route => handler
-	e.GET("/", viewHandler("index.html"))
+	e.GET("/", viewHandler("index.hbs"))
 	e.POST("/", func(c echo.Context) error {
 		domain := c.FormValue("domain")
 		if domain == "" { //LATER: better error checking

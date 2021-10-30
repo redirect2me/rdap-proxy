@@ -53,13 +53,13 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 - [ ] pass-through error responses
 
 - [x] LICENSE
-- [ ] README
+- [x] README
 - [ ] configurable limit message ("Free for light non-commerical use")
-- [ ] views: html -> hbs
+- [x] views: html -> hbs
 - [ ] /index.html: footer
 - [ ] /index.html: note about allowed domains
 - [ ] /index.html: link to README for detailed info (after 1st para)
-- [ ] POST for /index.html
+- [x] POST for /index.html
 - [ ] list of allowed TLDs to proxy (redirect always works)
 
 - [ ] /config.html
