@@ -16,7 +16,7 @@ import (
 )
 
 // LATER: move to be embedded
-//go:embed rdap-proxy.yaml
+//go:embed rdap-proxy-default.yaml
 var defaultConfig string
 
 var (
@@ -47,9 +47,10 @@ func loadConfig() {
 	viper.BindEnv("bind", "BIND")
 	viper.BindEnv("dev", "DEV")
 
-	viper.SetConfigFile("rdap-proxy.yaml")
+	//viper.AddConfigPath("/etc")
 	viper.AddConfigPath("/etc")
-	viper.AddConfigPath(".")
+	viper.SetConfigFile("rdap-proxy-default.yaml")
+	//viper.SetConfigType("yaml")
 	err := viper.ReadInConfig()
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {

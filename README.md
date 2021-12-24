@@ -44,13 +44,21 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 
 ## To Do
 
+- [ ] list of allowed TLDs to proxy (redirect always works)
+- [ ] /index.html: note about allowed domains
+- [ ] /index.html display recent TLDs queried w/success ratio
+- [ ] cache raw whois results (and nocache parameter)
+- [ ] banner and social media metadata
+- [ ] readme credits
+
+- [ ] unify logging
+- [ ] disable page logging when running in CloudRun
+
 - [ ] test for RDAP conformance
 - [ ] better date parsing
 - [ ] pass-through error responses
 
 - [ ] configurable limit message ("Free for light non-commerical use")
-- [ ] /index.html: note about allowed domains
-- [ ] list of allowed TLDs to proxy (redirect always works)
 
 - [ ] remove filesystem access to files in dev mode: air works
 
@@ -58,23 +66,11 @@ curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2
 
 - [ ] metrics
 - [ ] metrics badges?
-
-- [ ] banner and social media metadata
-
-- [ ] unify logging
-- [ ] disable page logging when running in CloudRun
-
 - [ ] 404/500 pages
-
 - [ ] rate-limiter
 - [ ] timeouts
 - [ ] time delay (per IP?)
 - [ ] basic auth + config/flag for user/password
-- [ ] page to display recent TLDs queried w/success ratio
-
-- [ ] release: binary for Linux
-- [ ] release: binary for MacOS
-- [ ] release: binary for Windows
 
 - [ ] [graceful shutdown](https://echo.labstack.com/cookbook/graceful-shutdown/)
 - [ ] compression
