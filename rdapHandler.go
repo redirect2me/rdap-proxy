@@ -32,5 +32,13 @@ func rdapHandler(c echo.Context) error {
 		return c.String(http.StatusOK, fmt.Sprintf("Unable to handle %s (%s)\n", domain, tld))
 	}
 
-	return c.String(whoisLookup(whois, domain, c.QueryParam("format")))
+	status, result := whoisLookup(whois, domain, c.QueryParam("format"))
+
+	switch result.(type) {
+
+	case string:
+		return c.String(status, result.(string))
+	default:
+		return c.JSON(status, result)
+	}
 }

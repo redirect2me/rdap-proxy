@@ -5,13 +5,12 @@ import (
 	"time"
 
 	//"github.com/likexian/whois"
-	"encoding/json"
 
 	whoisparser "github.com/likexian/whois-parser"
 	"github.com/registrobr/rdap/protocol"
 )
 
-func convertToRDAP(domain string, whoisInfo whoisparser.WhoisInfo) (int, string) {
+func convertToRDAP(domain string, whoisInfo whoisparser.WhoisInfo) (int, interface{}) {
 
 	tld := "" //LATER
 
@@ -67,12 +66,17 @@ func convertToRDAP(domain string, whoisInfo whoisparser.WhoisInfo) (int, string)
 		}
 	}
 
-	jsonStr, jsonErr := json.MarshalIndent(retVal, "", "  ")
-	if jsonErr != nil {
-		return 500, jsonErr.Error()
+	/* LATER
+	if len(whoisInfo.Registrar.Name) > 0 {
+		retVal.Entities = append(retVal.Entities, protocol.Entity{
+			ObjectClassName: "entity",
+			Handle:          "",
+			VCardArray:      []interface{},
+		})
 	}
+	*/
 
-	return 200, string(jsonStr)
+	return 200, retVal
 }
 
 func getDateLayout(tld string, input string) string {

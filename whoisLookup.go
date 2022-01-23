@@ -1,13 +1,11 @@
 package main
 
 import (
-	"encoding/json"
-
 	"github.com/likexian/whois"
 	whoisparser "github.com/likexian/whois-parser"
 )
 
-func whoisLookup(server, domain, format string) (int, string) {
+func whoisLookup(server, domain, format string) (int, interface{}) {
 
 	whoisClient := whois.NewClient()
 
@@ -29,12 +27,7 @@ func whoisLookup(server, domain, format string) (int, string) {
 	}
 
 	if format == "parsed" {
-		jsonStr, jsonErr := json.MarshalIndent(parsed, "", "  ")
-		if jsonErr != nil {
-			return 500, jsonErr.Error()
-		}
-
-		return 200, string(jsonStr)
+		return 200, parsed
 	}
 
 	return convertToRDAP(domain, parsed)
