@@ -5,6 +5,9 @@
 [![# of WHOIS servers](https://img.shields.io/badge/dynamic/json.svg?label=WHOIS+Servers&url=https%3A%2F%2Frdap.redirect2.me%2Fstatus.json&query=%24.whoisCount)](https://rdap.redirect2.me/config.json)
 [![# of RDAP servers](https://img.shields.io/badge/dynamic/json.svg?label=RDAP+Servers&url=https%3A%2F%2Frdap.redirect2.me%2Fstatus.json&query=%24.rdapCount)](https://rdap.redirect2.me/config.json)
 
+[RDAP](https://en.wikipedia.org/wiki/ "Registration_Data_Access_Protocol") is the replacement for the [WHOIS](https://en.wikipedia.org/wiki/WHOIS) domain information lookup protocol.  Unfortunately, not every registrar supports RDAP ([report](https://resolve.rs/domains/rdap-missing.html)).
+
+This is a simple proxy server that uses the existing WHOIS server but returns the information as RDAP.
 
 ## Resource Links
 
@@ -16,7 +19,8 @@
 ## How to Run
 
 To run locally for development:
-```
+
+```bash
 ./run.sh
 ```
 
@@ -28,19 +32,24 @@ To run locally for development:
 
 ## Credits
 
-golang
-google (favicon)
+[![Docker](https://www.vectorlogo.zone/logos/docker/docker-ar21.svg)](https://www.docker.com/ "Deployment")
+[![Git](https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg)](https://git-scm.com/ "Version control")
+[![Github](https://www.vectorlogo.zone/logos/github/github-ar21.svg)](https://github.com/ "Code hosting")
+[![golang](https://www.vectorlogo.zone/logos/golang/golang-ar21.svg)](https://golang.org/ "Programming language")
+[![Google Cloud Run](https://www.vectorlogo.zone/logos/google/google-ar21.svg)](https://cloud.google.com/run/ "Hosting")
+[![NodePing](https://www.vectorlogo.zone/logos/nodeping/nodeping-ar21.svg)](https://nodeping.com?rid=201109281250J5K3P "Uptime monitoring")
+[![pico.css](https://www.vectorlogo.zone/logos/picocss/picocss-ar21.svg
+)](https://picocss.com/ "Classless CSS")
 
-* [echo](https://echo.labstack.com/)
-* [rfc1036/whois](https://github.com/rfc1036/whois/blob/next/tld_serv_list) - list of whois servers
-* [resolve.rs](https://resolve.rs/domains/rdap.html) - list of rdap servers
+- [echo](https://echo.labstack.com/)
+- [rfc1036/whois](https://github.com/rfc1036/whois/blob/next/tld_serv_list) - list of whois servers
+- [resolve.rs](https://resolve.rs/domains/rdap.html) - list of rdap servers
 <!-- to update:
 curl https://resolve.rs/domains/rdap.json\?apikey\=sysadmin+rdap-proxy@redirect2.me | jq --sort-keys . >data/rdap.json
 -->
-* [viper](https://github.com/spf13/viper)
-* [echo](https://echo.labstack.com/guide/)
-* [raymond](https://github.com/aymerick/raymond)
-* [zerolog](https://github.com/rs/zerolog)
+- [viper](https://github.com/spf13/viper)
+- [raymond](https://github.com/aymerick/raymond)
+- [zerolog](https://github.com/rs/zerolog)
 
 ## To Do
 
